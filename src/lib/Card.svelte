@@ -2,9 +2,15 @@
 	export let word = 'Start game';
 </script>
 
-<div class="card">{word}</div>
+<div class="card">
+	{word}
+</div>
 
-<style>
+<style lang="scss">
+	div {
+		background-color: $red;
+	}
+
 	.card {
 		margin: 0 auto;
 		border: solid 5px black;

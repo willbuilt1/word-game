@@ -1,10 +1,12 @@
 import supabase from '$lib/db';
-import type { PageLoad } from './$types';
+import type { PageServerLoad } from './$types';
 
 // /** @type {import('./$types').PageLoad} */
-export async function load(): Promise<{ data: any[] }> {
+export const load: PageServerLoad = async () => {
 	const { data, error } = await supabase.from('words').select();
+
 	if (error) throw new Error(error.message);
-	console.log(data);
-	return { data };
-}
+	const wordArray: string[] = data.map((d) => d.word);
+
+	return { words: wordArray };
+};

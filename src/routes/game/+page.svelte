@@ -1,21 +1,17 @@
 <script lang="ts">
-	type wordObject = {
-		id: number;
-		created_at: string;
-		word: string;
-	};
-
+	import type { PageData } from './$types';
 	import Card from '$lib/Card.svelte';
-	/** @type {import('./$types').PageData} */
-	export let data: { data: wordObject[] };
-	const getRandomWord = (wordArray: wordObject[]) => {
-		return wordArray[Math.floor(Math.random() * wordArray.length)].word;
-	};
 
+	export let data: PageData;
 	let word: string;
 
+	const getRandomWord = (wordArray: string[]) => {
+		return wordArray[Math.floor(Math.random() * wordArray.length)];
+	};
+
 	const getNewWord = () => {
-		word = getRandomWord(data.data);
+		word = getRandomWord(data.words);
+		console.log(data);
 	};
 </script>
 
