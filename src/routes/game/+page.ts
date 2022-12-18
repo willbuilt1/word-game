@@ -1,16 +1,8 @@
-// import type { PageLoad } from '$types';
-// export const load: PageLoad = async ({ fetch }) => {
-// 	const res = await fetch('/category.json');
-
-// 	if (res.ok) {
-// 		const words = await res.json();
-// 		return { words };
-// 	}
-// };
 import supabase from '$lib/db';
+import type { PageLoad } from './$types';
 
-/** @type {import('./$types').PageLoad} */
-export async function load() {
+// /** @type {import('./$types').PageLoad} */
+export async function load(): Promise<{ data: any[] }> {
 	const { data, error } = await supabase.from('words').select();
 	if (error) throw new Error(error.message);
 	console.log(data);
